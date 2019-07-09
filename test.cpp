@@ -1,6 +1,8 @@
 
 #include "Message.h"
 #include <stdio.h>
+#include "proto/TestProto2.hpp"
+
 int main()
 {
 	Proto::TestType3 xxx;
