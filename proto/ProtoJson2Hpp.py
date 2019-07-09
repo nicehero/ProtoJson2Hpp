@@ -153,6 +153,8 @@ def build3(filename):
 					f.write('std::vector<')
 				if j["t"] == 'string':
 					j["t"] = 'std::string'
+				if j["t"] == 'binary':
+					j["t"] = 'nicehero::Binary'
 				f.write(j["t"])
 				for k in range(j['vDepth']):
 					if (k != 0):

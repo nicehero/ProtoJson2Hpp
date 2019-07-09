@@ -9,6 +9,10 @@
 			"type" : "<TestType2"
 		}
 		,{
+			"name" :"myBinary",
+			"type" : "binary"
+		}
+		,{
 			"name" :"myNum",
 			"type" : "ui64",
 			"default" : 0
