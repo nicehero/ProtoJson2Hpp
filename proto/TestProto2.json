@@ -1,0 +1,30 @@
+[
+
+{
+	"typeName" : "TestType3",
+	"isMsg" : true,
+	"fields" : [
+		{
+			"name" :"test",
+			"type" : "<TestType2"
+		}
+		,{
+			"name" :"myNum",
+			"type" : "ui64",
+			"default" : 0
+		}
+
+	]
+},
+{
+	"typeName" : "TestType4",
+	"isMsg" : true,
+	"fields" : [
+		{
+			"name" :"test",
+			"type" : "TestType"
+		}
+	]
+}
+
+]
