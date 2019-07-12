@@ -9,6 +9,8 @@ int main()
 	Proto::TestType2 xxx2;
 	xxx2.test.myUi64 = 99999;
 	xxx2.myString = "hello world";
+	xxx.operNum = 100;
+	xxx.storeNum = 200;
 	xxx.myNum = 666;
 	xxx.test.push_back(xxx2);
 	xxx.test.push_back(xxx2);
@@ -23,6 +25,8 @@ int main()
 	msg >> yyy;
 	
 	printf("%s:%d\n",yyy.test[2].myString.c_str(),int(yyy.myNum));
+	printf("operNum:%d\n",int(yyy.operNum.impl));
+	printf("storeNum:%d\n",int(yyy.storeNum.impl));
 	
 	return 0;
 }

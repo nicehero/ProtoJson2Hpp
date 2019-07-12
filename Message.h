@@ -149,6 +149,14 @@ namespace nicehero
 		{
 			return sizeof(s);
 		}
+		ui32 getSize(const OperUInt& s) const
+		{
+			return sizeof(s.impl);
+		}
+		ui32 getSize(const StoreUInt& s) const
+		{
+			return sizeof(s.impl);
+		}
 
 		template <typename T>
 		ui32 getSize(const std::vector<T>& s) const
@@ -191,6 +199,18 @@ namespace nicehero
 		return m;
 	}
 
+	inline Message & operator << (Message &m, const StoreUInt & p)
+	{
+		m.write_data(&(p.impl), sizeof(p.impl));
+		return m;
+	}
+
+	inline Message & operator << (Message &m, const OperUInt & p)
+	{
+		m.write_data(&(p.impl), sizeof(p.impl));
+		return m;
+	}
+
 	inline Message & operator << (Message &m, const std::string& p)
 	{
 		ui32 s = ui32(p.size());
@@ -224,6 +244,18 @@ namespace nicehero
 		return m;
 	}
 
+	inline Message & operator >> (Message &m, StoreUInt & p)
+	{
+		p.impl = *(store_uint_base*)m.read_data(sizeof(p.impl));
+		return m;
+	}
+
+	inline Message & operator >> (Message &m, OperUInt & p)
+	{
+		p.impl = *(oper_uint_base*)m.read_data(sizeof(p.impl));
+		return m;
+	}
+
 	inline Message & operator >> (Message &m, std::string& p)
 	{
 		ui32 s = 0;
@@ -249,8 +281,11 @@ namespace nicehero
 	inline Message & operator >> (Message &m, Binary& p)
 	{
 		p.m_Size = *(ui32*)m.read_data(4);
-		p.m_Data = std::unique_ptr<char[]>(new char[p.m_Size]);
-		memcpy(p.m_Data.get(), m.read_data(p.m_Size), p.m_Size);
+		if (p.m_Size > 0)
+		{
+			p.m_Data = std::unique_ptr<char[]>(new char[p.m_Size]);
+			memcpy(p.m_Data.get(), m.read_data(p.m_Size), p.m_Size);
+		}
 		return m;
 	}
 

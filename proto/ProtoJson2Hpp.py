@@ -35,6 +35,8 @@ filesDeps = {}
 structs['string'] = {}
 structs['std::string'] = {}
 structs['binary'] = {}
+structs['OperUInt'] = {}
+structs['StoreUInt'] = {}
 tt1 = ['u','ui']
 tt2 = ['8','16','32','64']
 canUseIDs = range(101,60001)
@@ -155,6 +157,10 @@ def build3(filename):
 					j["t"] = 'std::string'
 				if j["t"] == 'binary':
 					j["t"] = 'nicehero::Binary'
+				if j["t"] == 'OperUInt':
+					j["t"] = 'nicehero::OperUInt'
+				if j["t"] == 'StoreUInt':
+					j["t"] = 'nicehero::StoreUInt'
 				f.write(j["t"])
 				for k in range(j['vDepth']):
 					if (k != 0):

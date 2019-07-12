@@ -13,6 +13,16 @@
 			"type" : "binary"
 		}
 		,{
+			"name" :"operNum",
+			"type" : "OperUInt",
+			"default" : 0
+		}
+		,{
+			"name" :"storeNum",
+			"type" : "StoreUInt",
+			"default" : 0
+		}
+		,{
 			"name" :"myNum",
 			"type" : "ui64",
 			"default" : 0

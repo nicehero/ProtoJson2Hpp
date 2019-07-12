@@ -34,7 +34,7 @@
   
   one json file make a one hpp file,and it will auto gen depends relation(#include)
   
-  support base type: i8 i16 i32 i64 ui8 ui16 ui32 ui64 string binary
+  support base type: i8 i16 i32 i64 ui8 ui16 ui32 ui64 string binary OperUInt StoreUInt
 
   cmd_fix.json is your customer id value
 
@@ -78,7 +78,7 @@
   
   一个json文件将生成一个hpp文件,脚本将会自动为你组织好依赖关系(#include)
   
-  支持的基础类型: i8 i16 i32 i64 ui8 ui16 ui32 ui64 string binary
+  支持的基础类型: i8 i16 i32 i64 ui8 ui16 ui32 ui64 string binary OperUInt StoreUInt
 
   可以编辑cmd_fix.json文件，来制定某些你需要特定的消息ID
 
