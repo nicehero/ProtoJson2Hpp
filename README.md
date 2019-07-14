@@ -34,8 +34,8 @@
                     ,{
                             "name" :"testCondition",
                             "type" : "ui32",
-							"default" : 1,
-							"condition" : "myInt == 0"//only this condition is true then serialize the field
+                            "default" : 1,
+                            "condition" : "myInt == 0"//only this condition is true then serialize the field
                     }
             ]
     }
@@ -89,8 +89,8 @@
                     ,{
                             "name" :"testCondition",
                             "type" : "ui32",
-							"default" : 1,
-							"condition" : "myInt == 0"//当字段拥有condition时，仅当其中条件为真时才会序列化此字段
+                            "default" : 1,
+                            "condition" : "myInt == 0"//当字段拥有condition时，仅当其中条件为真时才会序列化此字段
                     }
             ]
     }
