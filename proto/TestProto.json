@@ -26,5 +26,21 @@
 		}
 	]
 }
+,{
+	"typeName" : "TestAck",
+	"isMsg" : true,
+	"fields" : [
+		{
+			"name" :"code",
+			"type" : "Code"
+		}
+		,{
+			"name" :"test",
+			"type" : "ui64",
+			"condition" : "code.value == 0",
+			"default" : 0
+		}
+	]
+}
 
 ]

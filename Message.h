@@ -198,6 +198,16 @@ namespace nicehero
 		m.write_data(&p, sizeof(p));
 		return m;
 	}
+	inline Message & operator << (Message &m, const ui32 & p)
+	{
+		m.write_data(&p, sizeof(p));
+		return m;
+	}
+	inline Message & operator << (Message &m, const ui16 & p)
+	{
+		m.write_data(&p, sizeof(p));
+		return m;
+	}
 
 	inline Message & operator << (Message &m, const StoreUInt & p)
 	{
@@ -241,6 +251,16 @@ namespace nicehero
 	inline Message & operator >> (Message &m, ui64 & p)
 	{
 		p = *(ui64*)m.read_data(sizeof(p));
+		return m;
+	}
+	inline Message & operator >> (Message &m, ui32 & p)
+	{
+		p = *(ui32*)m.read_data(sizeof(p));
+		return m;
+	}
+	inline Message & operator >> (Message &m, ui16 & p)
+	{
+		p = *(ui16*)m.read_data(sizeof(p));
 		return m;
 	}
 

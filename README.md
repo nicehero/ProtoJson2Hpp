@@ -26,6 +26,17 @@
                             "name" :"testList",
                             "type" : "<<string"//this type is std::vector<std::vector<string> >
                     }
+                    ,{
+                            "name" :"myInt",
+                            "type" : "ui32",
+							"default" : 1
+                    }
+                    ,{
+                            "name" :"testCondition",
+                            "type" : "ui32",
+							"default" : 1,
+							"condition" : "myInt == 0"//only this condition is true then serialize the field
+                    }
             ]
     }
 
@@ -37,9 +48,10 @@
   support base type: i8 i16 i32 i64 ui8 ui16 ui32 ui64 string binary OperUInt StoreUInt
 
   cmd_fix.json is your customer id value
+  
 
 
-=================================================================================
+=========================================================================
 
   一个轻量级json协议转成c++11代码的序列化库
   
@@ -68,6 +80,17 @@
                     ,{
                             "name" :"testList",
                             "type" : "<<string"//此字段代表的类型为 std::vector<std::vector<std::string> >
+                    }
+                    ,{
+                            "name" :"myInt",
+                            "type" : "ui32",
+							"default" : 1
+                    }
+                    ,{
+                            "name" :"testCondition",
+                            "type" : "ui32",
+							"default" : 1,
+							"condition" : "myInt == 0"//当字段拥有condition时，仅当其中条件为真时才会序列化此字段
                     }
             ]
     }

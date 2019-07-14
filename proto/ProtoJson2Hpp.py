@@ -2,6 +2,7 @@ import os
 import json
 import logging
 from logging import handlers
+
 pre = '../'
 class Logger(object):
     level_relations = {
@@ -185,12 +186,20 @@ def build3(filename):
 		for i in files[outFilename]:
 			f.write('\tinline nicehero::Message & operator << (nicehero::Message &m, const %s& p)\n\t{\n'%(i['typeName']))
 			for j in i['fields']:
-				f.write('\t\tm << p.%s;\n'%(j["name"]))
+				if not (j.has_key("condition") and isinstance(j["condition"],unicode)):
+					f.write('\t\tm << p.%s;\n'%(j["name"]))
+				else:
+					f.write('\t\tif (p.%s)\n'%(j["condition"]))
+					f.write('\t\t\tm << p.%s;\n'%(j["name"]))
 			f.write('\t\treturn m;\n\t}\n')
 			
 			f.write('\tinline nicehero::Message & operator >> (nicehero::Message &m, %s& p)\n\t{\n'%(i['typeName']))
 			for j in i['fields']:
-				f.write('\t\tm >> p.%s;\n'%(j["name"]))
+				if not (j.has_key("condition") and isinstance(j["condition"],unicode)):
+					f.write('\t\tm >> p.%s;\n'%(j["name"]))
+				else:
+					f.write('\t\tif (p.%s)\n'%(j["condition"]))
+					f.write('\t\t\tm >> p.%s;\n'%(j["name"]))
 			f.write('\t\treturn m;\n\t}\n')
 			f.write('''
 \tinline void %s::serializeTo(nicehero::Message& msg) const
@@ -207,7 +216,11 @@ def build3(filename):
 \t\tui32 s = 0;
 ''' % (i['typeName']))
 			for j in i['fields']:
-				f.write('\t\ts += nicehero::Serializable::getSize(%s);\n' % (j["name"]))
+				if not (j.has_key("condition") and isinstance(j["condition"],unicode)):
+					f.write('\t\ts += nicehero::Serializable::getSize(%s);\n' % (j["name"]))
+				else:
+					f.write('\t\tif (%s)\n'%(j["condition"]))
+					f.write('\t\t\ts += nicehero::Serializable::getSize(%s);\n' % (j["name"]))
 			f.write('''\t\treturn s;
 \t}
 ''')
@@ -302,7 +315,7 @@ for i in filelist:
 			exit(0)
 	
 #print idMap
-print 'build cmd'
+print ('build cmd')
 idV = []
 for i in idMap:
 	idV.append(i)
